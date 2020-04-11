@@ -4,9 +4,11 @@ public class Player {
 
     public void move(char direction){
 
+
     }
 
     public boolean setPosition(Position p ){
+
         return true;
     }
 }
