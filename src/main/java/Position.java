@@ -16,14 +16,13 @@ public class Position {
         return y;
     }
 
-    public boolean setPosition(int X, int Y) {
-        int n = 0; //to get map size
+    public boolean setPosition(int n, int X, int Y) {
         if(isLegal(n, X, Y)) {
             this.x = X;
             this.y = Y;
             return true;
         }
-        return false; //to return false is move is illegal
+        return false; //to return false if move is illegal
     }
 
     //Ensuring that the player does not try to move outside the map

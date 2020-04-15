@@ -33,4 +33,8 @@ public class Map {
 
         return type;
     }
+
+    public int getSize(){
+        return size;
+    }
 }
