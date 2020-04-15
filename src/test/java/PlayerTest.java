@@ -23,7 +23,7 @@ public class PlayerTest {
 
         int x = player.current.getX();
         int y = player.current.getY();
-        player.move('U');
+        player.move('U', 10);
         int new_x = player.current.getX();
         int new_y = player.current.getY();
 
@@ -37,7 +37,7 @@ public class PlayerTest {
 
         int x = player.current.getX();
         int y = player.current.getY();
-        player.move('D');
+        player.move('D', 10);
         int new_x = player.current.getX();
         int new_y = player.current.getY();
 
@@ -50,7 +50,7 @@ public class PlayerTest {
 
         int x = player.current.getX();
         int y = player.current.getY();
-        player.move('R');
+        player.move('R', 10);
         int new_x = player.current.getX();
         int new_y = player.current.getY();
 
@@ -64,7 +64,7 @@ public class PlayerTest {
 
         int x = player.current.getX();
         int y = player.current.getY();
-        player.move('L');
+        player.move('L', 10);
         int new_x = player.current.getX();
         int new_y = player.current.getY();
 
