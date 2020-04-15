@@ -32,7 +32,7 @@ public class Player {
                 Y=this.current.getY() ;
         }
         this.current.setPosition(X, Y);
-
+  
 
     }
 
