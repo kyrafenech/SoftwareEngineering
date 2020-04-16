@@ -1,15 +1,20 @@
 public class Map {
 
+
     int size;
+    char[][] map;
+
+    public Map(int size){
+        this.size = size;
+        map = new char[size][size];
+    }
 
 
-    public boolean setMapSize(int x, int y, int n){
-        // n is the number of players
+    private boolean setMapSize(int x, int n){
+        /* n is the number of players
+           s is the size
+        */
 
-        if(x!=y){
-            System.out.println("The map must be a square shape of size NxN.\n");
-
-        }
         int max_size = 50;
         int min_size;
         if(n<=4){
