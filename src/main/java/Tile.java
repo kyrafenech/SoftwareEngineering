@@ -1,5 +1,6 @@
 public abstract class Tile {
 
-    public abstract char tileType();
+
+    public abstract char getTileType();
 
 }

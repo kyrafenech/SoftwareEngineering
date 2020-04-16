@@ -1,9 +1,9 @@
 public class GrassTile extends Tile{
 
-    char type = 'G';
+    private char type = 'G';
 
     @Override
-    public char tileType() {
+    public char getTileType() {
         return type;
     }
 

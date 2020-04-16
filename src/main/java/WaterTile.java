@@ -1,9 +1,9 @@
 public class WaterTile extends Tile{
 
-    char type = 'W';
+    private char type = 'W';
 
     @Override
-    public char tileType() {
+    public char getTileType() {
         return type;
     }
 
