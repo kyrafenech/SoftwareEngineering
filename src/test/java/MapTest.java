@@ -21,18 +21,23 @@ public class MapTest{
 
     @Test
     public void setMapSize_TooSmall() {
-        boolean result = map.setMapSize(3,4,6);
+        boolean result = map.setMapSize(4,4,6);
         assertFalse(result);
     }
 
     @Test
     public void setMapSize_TooBig() {
-        boolean result = map.setMapSize(60,50,8);
+        boolean result = map.setMapSize(60,60,8);
         assertFalse(result);
     }
     @Test
+    public void setMapSize_UnequalParameters() {
+        boolean result = map.setMapSize(40,30,8);
+        assertTrue(result);
+    }
+    @Test
     public void setMapSize() {
-        boolean result = map.setMapSize(30,10,6);
+        boolean result = map.setMapSize(30,30,6);
         assertTrue(result);
     }
 
