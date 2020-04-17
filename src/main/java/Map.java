@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Map {
 
     int size;
@@ -30,6 +32,7 @@ public class Map {
     public void generate(){
 
     }
+
 
     public char getTileType(int x, int y){
 
