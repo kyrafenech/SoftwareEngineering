@@ -24,9 +24,9 @@ public class Player {
     }
 
     public boolean move(Direction direction) {
-        int X = this.current.x;
-        int Y = this.current.y;
-        int size = map.size;
+        int X = this.current.getX();
+        int Y = this.current.getY();
+        int size = map.getMapSize();
 
         switch (direction) {
             case UP:
@@ -55,8 +55,11 @@ public class Player {
 
     private boolean setPosition(Position p){
         //checking if new coordinates are in map boundary
-        if(p.x > 0 && p.x < map.size && p.y > 0 && p.y < map.size){
-            this.current = p;
+        int x = p.getX();
+        int y = p.getY();
+
+        if(x > 0 && x < map.getMapSize() && y > 0 && y < map.getMapSize()){
+            this.current.setPosition(x, y);
             return true;
         }
         return false;
