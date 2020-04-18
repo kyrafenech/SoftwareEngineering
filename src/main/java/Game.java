@@ -1,7 +1,7 @@
 public class Game {
 
     int turns;
-    Player player;
+    Player[] players;
     Map map;
 
 
@@ -17,6 +17,14 @@ public class Game {
         }else {
             return true;
         }
+    }
+
+    private boolean setMapSize(int size){
+
+        final int MAX = 50;
+        final int MIN = players.length <= 4 ? 5 : 8;
+
+        return MIN <= size && size <= MAX ? true : false;
     }
 
     public void generateHTMLFile(){
