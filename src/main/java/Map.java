@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class Map {
 
-    private int size;
+    public int size;
     private Tile[][] grid;
 
     public Map(int size){
@@ -75,9 +75,5 @@ public class Map {
                 }
             }
         }
-    }
-
-    public int getSize(){
-        return this.size;
     }
 }

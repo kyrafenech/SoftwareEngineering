@@ -4,6 +4,7 @@ public class Player {
 
     Position current;
     Position initial;
+    Map map;
 
     public Player() {
         this.initial = setInitialPosition(Map.getMap().getSize()); //this will be randomly generated
@@ -22,45 +23,43 @@ public class Player {
 
     }
 
-    public boolean move(char direction, int size) {
-        int X, Y; //new coordinates
-        boolean moved;
+    public boolean move(Direction direction) {
+        int X = this.current.x;
+        int Y = this.current.y;
+        int size = map.size;
 
         switch (direction) {
-            case 'U':
-                X = this.current.getX(); //x-coordinate stays the same
-                Y = this.current.getY() + 1; //y-coordinate moves up by 1
+            case UP:
+                Y -= 1; //y-coordinate moves up by 1
                 break;
-            case 'D':
-                X = this.current.getX(); //x-coordinate stays the same
-                Y = this.current.getY() - 1; //y-coordinate moves down by 1
+            case DOWN:
+                Y += 1; //y-coordinate moves down by 1
                 break;
-            case 'R':
-                X = this.current.getX() + 1; //x-coordinate moves right by 1
-                Y = this.current.getY(); //y-coordinate stays the same
+            case RIGHT:
+                X += 1; //x-coordinate moves right by 1
                 break;
-            case 'L':
-                X = this.current.getX() - 1; //x-coordinate moves left by 1
-                Y = this.current.getY(); //y-coordinate stays the same
+            case LEFT:
+                X -= 1; //x-coordinate moves left by 1
                 break;
             default:
                 //in the case of an invalid token the player does not move
-                X = this.current.getX();
-                Y = this.current.getY();
                 System.out.println("Please press U, D, L or R to move.");
-                moved = false;
+                return false;
         }
-
-        if (this.current.setPosition(size, X, Y)) {
-            moved = true;
-        } else {
-            System.out.println("Illegal move!");
-            moved = false;
+        if(!setPosition(new Position(X,Y))){
+            System.out.println("Illegal move.");
+            return false;
         }
-
-        return moved;
-
+        return true;
     }
 
+    private boolean setPosition(Position p){
+        //checking if new coordinates are in map boundary
+        if(p.x > 0 && p.x < map.size && p.y > 0 && p.y < map.size){
+            this.current = p;
+            return true;
+        }
+        return false;
+    }
 
 }
