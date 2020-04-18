@@ -1,21 +1,19 @@
-public abstract class Tile {
+public class Tile {
 
-    char type;
-    boolean covered;
+    private TileType type;
+    private boolean covered;
 
-    public Tile(){
+    public Tile(TileType type){
+        this.type = type;
         covered = true;
     }
 
-    public abstract void setType();
-
-    public char getType() {
-        return type;
+    public TileType getType() {
+        return this.type;
     }
 
     public void uncoverTile(){
-        covered = false;
+        this.covered = false;
     }
-
 
 }
