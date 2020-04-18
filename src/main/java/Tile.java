@@ -5,7 +5,7 @@ public class Tile {
 
     public Tile(TileType type){
         this.type = type;
-        covered = true;
+        this.covered = true;
     }
 
     public TileType getType() {
