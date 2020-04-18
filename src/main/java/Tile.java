@@ -1,21 +1,20 @@
 public abstract class Tile {
 
     char type;
-    boolean covered = true;
+    boolean covered;
 
     public Tile(){
-
+        covered = true;
     }
 
-    private abstract void setType();
-    public abstract char getType();
+    public abstract void setType();
 
-    private void setCovered(){
-        covered = false;
+    public char getType() {
+        return type;
     }
 
     public void uncoverTile(){
-
+        covered = false;
     }
 
 

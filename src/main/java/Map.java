@@ -1,6 +1,7 @@
 public class Map {
 
     int size;
+    Tile[][] map;
 
     public boolean setMapSize(int x, int y, int n){
         // n is the number of players
