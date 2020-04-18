@@ -4,7 +4,13 @@ public class Map {
 
     int size;
     Tile[][] grid;
+    static Map map = null;
 
+    public static Map getMap(){
+            if(map ==null)
+                map = new Map();
+            return map;
+    }
 
     public boolean setMapSize(int size, int n){
         // n is the number of players
@@ -51,7 +57,7 @@ public class Map {
             int random_x = random.nextInt(this.size);
             int random_y = random.nextInt(this.size);
             //in case the random coordinates are occupied by the treasure tile or another water tile
-            if(this.grid[random_x][random_y] instanceof TreasureTile || this.grid[random_x][random_y] instanceof WaterTile){
+            if(this.grid[random_x][random_y].tileType()== 'T' || this.grid[random_x][random_y].tileType()== 'W'){
                 amount++;
                 continue;
             }else{
@@ -77,6 +83,6 @@ public class Map {
     }
 
     public int getSize(){
-        return size;
+        return this.size;
     }
 }

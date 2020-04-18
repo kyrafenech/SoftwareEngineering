@@ -1,11 +1,25 @@
+import java.util.Random;
+
 public class Player {
 
     Position current;
     Position initial;
 
     public Player() {
-        this.initial = new Position(0, 0); //this will be randomly generated
-        this.current = new Position(0, 0); //this will start off as initial
+        this.initial = setInitialPosition(Map.getMap().getSize()); //this will be randomly generated
+        this.current = this.initial; //this will start off as initial
+    }
+
+    public Position setInitialPosition(int size_ofMap){
+        Random rand = new Random();
+        int x = rand.nextInt(size_ofMap);
+        int y = rand.nextInt(size_ofMap);
+        if(Map.getMap().grid[x][y].tileType() == 'G'){
+            return new Position(x,y);
+        }else{
+            return setInitialPosition(size_ofMap);
+        }
+
     }
 
     public boolean move(char direction, int size) {
