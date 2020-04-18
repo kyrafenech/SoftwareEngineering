@@ -3,7 +3,12 @@ public class TreasureTile extends Tile{
     private char type = 'T';
 
     @Override
-    public char getTileType() {
+
+
+    @Override
+    public char getType() {
         return type;
     }
+
+
 }
