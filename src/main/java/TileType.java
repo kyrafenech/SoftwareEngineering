@@ -1,3 +1,5 @@
 public enum TileType {
-        GRASS, WATER, TREASURE;
+        GRASS,
+        WATER,
+        TREASURE
 }

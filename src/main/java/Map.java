@@ -8,56 +8,73 @@ public class Map {
     public Map(int size){
         this.size = size;
         this.grid = new Tile[size][size];
+        generate();
     }
 
-    public Tile[][] generate(){
-        this.grid = new Tile[size][size];
-        Random rand = new Random();
-        setGrass();
-        setTreasure(rand);
-        setWaterTile(rand);
-        return this.grid;
+    private void generate(){
+        //Setting the Treasure tile
+        Random rnd = new Random();
+        int treasureX = rnd.nextInt(this.size);
+        int treasureY = rnd.nextInt(this.size);
+
+        this.grid[treasureX][treasureY] = new Tile(TileType.TREASURE);
+
+        //Setting number of grass tiles
+        int numOfGrassTiles = (int) (size*size*0.70);
+
+        //Setting the Grass tiles
+        setGrass(treasureX, treasureX, numOfGrassTiles);
+
+        //Setting the remaining empty tiles as Water tiles
+        setWater();
    }
 
-    public void setTreasure(Random random){
-        int random_x = random.nextInt(this.size);
-        int random_y = random.nextInt(this.size);
+    private void setGrass(int tX, int tY, int num){
+        int tempX = 0;
+        int tempY = 0;
+        boolean tileSet = false;
 
-        this.grid[random_x][random_y]=null; //since it is already a grass tile
-        this.grid[random_x][random_y] = new TreasureTile();
-    }
+        for(int i=1; i <= num; i++){
+            do {
+                Direction direction = Direction.randomDirection();
+                switch (direction) {
+                    case UP:
+                        tempY -=1;
+                        break;
+                    case DOWN:
+                        tempY +=1;
+                        break;
+                    case LEFT:
+                        tempX -=1;
+                        break;
+                    case RIGHT:
+                        tempX +=1;
+                        break;
+                    default:
+                        throw new IndexOutOfBoundsException();
+                }
 
-    public void setWaterTile(Random random){
-        //number of water tiles will be approximately 30% of the size
-        int amount = (int)((float)Math.pow(this.size,2)/3);
-        int i;
-        for(i =0; i < amount; i++){
-            int random_x = random.nextInt(this.size);
-            int random_y = random.nextInt(this.size);
-            //in case the random coordinates are occupied by the treasure tile or another water tile
-            if(this.grid[random_x][random_y].getType()== 'T' || this.grid[random_x][random_y].getType()== 'W'){
-                amount++;
-                continue;
-            }else{
-                this.grid[random_x][random_y]=null; //since it is already a grass tile
-                this.grid[random_x][random_y] = new WaterTile();
-            }
+                if(tempX > 0 && tempX < size && tempY > 0 && tempY < size ){
+                    tX += tempX;
+                    tY += tempY;
+                    grid[tempX][tempY] = new Tile(TileType.GRASS);
+                    tileSet = true;
+                }else{
+                    tempX = 0;
+                    tempY = 0;
+                }
+            }while(!tileSet);
         }
     }
 
-    public void setGrass(){
-        for (int i = 0; i < this.size; i++) {
-            for (int j = 0; j < this.size; j++) {
-                    this.grid[i][j] = new GrassTile();
+    private void setWater(){
+        for(int x=0; x < size; x++){
+            for(int y=0; y < size; y++){
+                if(grid[x][y] == null){
+                    grid[x][y] = new Tile(TileType.WATER);
+                }
             }
         }
-    }
-
-    public char getTileType(int x, int y){
-
-        char type = 'G';
-
-        return type;
     }
 
     public int getSize(){
