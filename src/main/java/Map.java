@@ -80,4 +80,8 @@ public class Map {
     public int getMapSize(){
         return this.size;
     }
+
+    public TileType getTileType(int x, int y){
+        return grid[x][y].getType();
+    }
 }

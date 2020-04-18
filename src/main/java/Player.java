@@ -2,31 +2,32 @@ import java.util.Random;
 
 public class Player {
 
-    Position current;
-    Position initial;
-    Map map;
+    private Position current;
+    private Position initial;
+    private Map map;
 
-    public Player() {
-        this.initial = setInitialPosition(Map.getMap().getSize()); //this will be randomly generated
+    public Player(Map map) {
+        this.map = map;
+        setInitial();
         this.current = this.initial; //this will start off as initial
     }
 
-    public Position setInitialPosition(int size_ofMap){
+    private void setInitial(){
         Random rand = new Random();
-        int x = rand.nextInt(size_ofMap);
-        int y = rand.nextInt(size_ofMap);
-        if(Map.getMap().grid[x][y].getType() == 'G'){
-            return new Position(x,y);
-        }else{
-            return setInitialPosition(size_ofMap);
-        }
+        int x, y;
 
+        do {
+            x = rand.nextInt(map.getMapSize());
+            y = rand.nextInt(map.getMapSize());
+
+        }while(map.getTileType(x, y) != TileType.GRASS);
+
+        this.initial = new Position(x, y);
     }
 
     public boolean move(Direction direction) {
         int X = this.current.getX();
         int Y = this.current.getY();
-        int size = map.getMapSize();
 
         switch (direction) {
             case UP:
@@ -59,7 +60,8 @@ public class Player {
         int y = p.getY();
 
         if(x > 0 && x < map.getMapSize() && y > 0 && y < map.getMapSize()){
-            this.current.setPosition(x, y);
+            this.current.setX(x);
+            this.current.setY(y);
             return true;
         }
         return false;
