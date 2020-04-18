@@ -2,35 +2,12 @@ import java.util.Random;
 
 public class Map {
 
-    int size;
+    private int size;
+    private Tile[][] grid;
 
-    Tile[][] grid;
-    static Map map = null;
-
-    public static Map getMap(){
-            if(map == null)
-                map = new Map();
-            return map;
-    }
-
-    public boolean setMapSize(int size, int n){
-        // n is the number of players
-
-        int max_size = 50;
-        int min_size;
-        if(n<=4){
-             min_size = 5;
-        }else {
-             min_size= 8;
-        }
-
-        if(min_size < size && size < max_size) {
-            this.size = size;
-            return true;
-        }else{
-            return false;
-        }
-
+    public Map(int size){
+        this.size = size;
+        this.grid = new Tile[size][size];
     }
 
     public Tile[][] generate(){
