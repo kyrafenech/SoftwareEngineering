@@ -19,6 +19,28 @@ public class GameTest {
     }
 
     @Test
+    public void setMapSize_TooSmall() {
+        boolean result = game.setMapSize(4);
+        assertFalse(result);
+    }
+
+    @Test
+    public void setMapSize_TooBig() {
+        boolean result = game.setMapSize(60);
+        assertFalse(result);
+    }
+    @Test
+    public void setMapSize_UnequalParameters() {
+        boolean result = game.setMapSize(40);
+        assertTrue(result);
+    }
+    @Test
+    public void setMapSize() {
+        boolean result = game.setMapSize(30);
+        assertTrue(result);
+    }
+
+    @Test
     public void setNumPlayers_LessThan2() {
         boolean result = game.setNumPlayers(1);
         assertFalse(result);
@@ -36,7 +58,7 @@ public class GameTest {
     }
 
     @Test
-    public void generateHTMLFile() {
+    public void generateHTMLFiles() {
     }
 
     @Test

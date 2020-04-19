@@ -7,11 +7,10 @@ import static org.junit.Assert.*;
 public class TileTest {
 
     Tile tile;
-    TileType type = TileType.randomTileType();
 
     @Before
     public void setUp() throws Exception {
-        this.tile = new Tile(this.type);
+        this.tile = new Tile(TileType.GRASS);
     }
 
     @After
@@ -20,13 +19,23 @@ public class TileTest {
     }
 
     @Test
-    public void testGetType(){
+    public void getType(){
         TileType type = tile.getType();
-        assertEquals(this.type, type);
+        assertEquals(TileType.GRASS, type);
     }
 
     @Test
-    public void testUncoverTile(){
+    public void uncoverTile(){
+
+    }
+
+    @Test
+    public void setUncovered(){
+
+    }
+
+    @Test
+    public void getHtml(){
 
     }
 

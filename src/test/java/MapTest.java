@@ -10,7 +10,7 @@ public class MapTest{
 
     @Before
     public void setUp() throws Exception {
-        map = new Map();
+        map = new Map(25);
     }
 
     @After
@@ -19,35 +19,31 @@ public class MapTest{
     }
 
     @Test
-    public void setMapSize_TooSmall() {
-        boolean result = map.setMapSize(4,6);
-        assertFalse(result);
-    }
-
-    @Test
-    public void setMapSize_TooBig() {
-        boolean result = map.setMapSize(60,8);
-        assertFalse(result);
-    }
-    @Test
-    public void setMapSize_UnequalParameters() {
-        boolean result = map.setMapSize(40,8);
-        assertTrue(result);
-    }
-    @Test
-    public void setMapSize() {
-        boolean result = map.setMapSize(30,6);
-        assertTrue(result);
-    }
-
-    @Test
     public void generate() { //testing that map generation creates the required amount of tiles
-        map.setMapSize(30,6);
-        Tile[][] grid = map.generate();
-        assertEquals(30, grid.length);
+
     }
 
     @Test
-    public void getTileType() {
+    public void setGrass(){
+
+    }
+
+    @Test
+    public void setWater(){
+
+    }
+
+    @Test
+    public void getSize(){
+        assertEquals(25, map.getSize());
+    }
+
+    @Test
+    public void getTile() {
+    }
+
+    @Test
+    public void uncoverTile(){
+
     }
 }

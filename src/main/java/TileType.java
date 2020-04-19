@@ -19,4 +19,14 @@ public enum TileType {
                 return this.hexCode;
         }
 
+        private static final List<TileType> VALUES =
+                Collections.unmodifiableList(Arrays.asList(values()));
+        private static final int SIZE = VALUES.size();
+        private static final Random RANDOM = new Random();
+
+        //get random tile type
+        public static TileType randomTileType() {
+                return VALUES.get(RANDOM.nextInt(SIZE));
+        }
+
 }
