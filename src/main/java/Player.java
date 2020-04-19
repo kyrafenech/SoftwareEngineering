@@ -23,10 +23,10 @@ public class Player {
         //validating that the randomly generated position is a Grass tile
         do {
             //generating a random position
-            x = rand.nextInt(map.getMapSize());
-            y = rand.nextInt(map.getMapSize());
+            x = rand.nextInt(map.getSize());
+            y = rand.nextInt(map.getSize());
 
-        }while(map.getTileType(x, y) != TileType.GRASS);
+        }while(map.getTile(x, y).getType() != TileType.GRASS);
 
         //if valid, set initial position
         this.initial = new Position(x, y);
@@ -66,7 +66,7 @@ public class Player {
         map.uncoverTile(X, Y);
 
         //setting status according to discovered tile type
-        switch(map.getTileType(X,Y)){
+        switch(map.getTile(X, Y).getType()){
             case GRASS:
                 //if a player discovers a grass tile they are safe
                 status = PlayerStatus.SAFE;
@@ -94,7 +94,7 @@ public class Player {
         int x = p.getX();
         int y = p.getY();
 
-        if(x > 0 && x < map.getMapSize() && y > 0 && y < map.getMapSize()){
+        if(x > 0 && x < map.getSize() && y > 0 && y < map.getSize()){
             //if legal move, set new position
             this.current.setX(x);
             this.current.setY(y);
@@ -106,5 +106,15 @@ public class Player {
     //getter for player's status
     public PlayerStatus getStatus(){
         return status;
+    }
+
+    //getter for current position
+    public Position getCurrent(){
+        return this.current;
+    }
+
+    //getter for player's map
+    public Map getMap(){
+        return this.map;
     }
 }
