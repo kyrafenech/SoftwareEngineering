@@ -37,7 +37,7 @@ public class Game {
         return true;
     }
 
-    public void generateHTMLFile(){
+    public void generateHTMLFiles(){
 
     }
 
