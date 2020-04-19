@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,7 +10,8 @@ public class Game {
     private int turns;
     private Player[] players;
     private Map map;
-
+    private File[] htmlFiles;
+    private BufferedWriter[] bw;
 
     private boolean setNumPlayers(int playerCount){
         int minPlayers = 2;
@@ -37,8 +42,37 @@ public class Game {
         return true;
     }
 
-    public void generateHTMLFiles(){
+    public void generateHTMLFiles() throws IOException {
+        int i,j,k;
 
+        String html = "";
+
+        if(htmlFiles == null) {
+            htmlFiles = new File[players.length];
+            bw = new BufferedWriter[players.length];
+            for (i = 0; i < htmlFiles.length; i++) {
+                htmlFiles[i] = new File("C:\\map_player_" + (i + 1) + ".html");
+                bw[i] = new BufferedWriter(new FileWriter(htmlFiles[i]));
+            }
+        }
+        else{
+            for(i=0; i < htmlFiles.length; i++){
+                html += "<table>";
+
+                for(j=0; j < map.getSize(); j++){
+                    html += "<tr>";
+                    for(k=0; k < map.getSize(); k++){
+                        if(players[i].getMap().getTileType())
+                    }
+                    html += "</tr>";
+                }
+
+                html += "</table>";
+
+                bw[i].write(html);
+                bw[i].close();
+            }
+        }
     }
 
     public static void main(String[] args) {

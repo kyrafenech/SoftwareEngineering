@@ -93,13 +93,13 @@ public class Map {
     }
 
     //getter for size
-    public int getMapSize(){
+    public int getSize(){
         return this.size;
     }
 
-    //returns tile type
-    public TileType getTileType(int x, int y){
-        return grid[x][y].getType();
+    //returns tile
+    public Tile getTile(int x, int y){
+        return grid[x][y];
     }
 
     //uncovers discovered tiles
