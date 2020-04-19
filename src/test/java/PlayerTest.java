@@ -39,7 +39,7 @@ public class PlayerTest {
         int new_y = player.getCurrent().getY();
 
         assertEquals(x, new_x);
-        assertEquals(y + 1, new_y);
+        assertEquals(y - 1, new_y);
 
     }
 
@@ -53,7 +53,7 @@ public class PlayerTest {
         int new_y = player.getCurrent().getY();
 
         assertEquals(x, new_x);
-        assertEquals(y - 1, new_y);
+        assertEquals(y + 1, new_y);
     }
 
     @Test
