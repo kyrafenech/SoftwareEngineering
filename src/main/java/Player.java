@@ -2,34 +2,42 @@ import java.util.Random;
 
 public class Player {
 
-    private Position current;
-    private Position initial;
-    private Map map;
+    private Position initial; //will store the randomly generated initial position
+    private Position current; //the player's position that will change throughout the game
+    private Map map; //a copy of the generated map from the player's perspective
     private PlayerStatus status;
 
+    //class constructor
     public Player(Map map) {
         this.map = map;
         setInitial();
         this.current = this.initial; //this will start off as initial
+        this.status = PlayerStatus.SAFE;
     }
 
+    //setting random initial position
     private void setInitial(){
         Random rand = new Random();
         int x, y;
 
+        //validating that the randomly generated position is a Grass tile
         do {
+            //generating a random position
             x = rand.nextInt(map.getMapSize());
             y = rand.nextInt(map.getMapSize());
 
         }while(map.getTileType(x, y) != TileType.GRASS);
 
+        //if valid, set initial position
         this.initial = new Position(x, y);
     }
 
     public boolean move(Direction direction) {
+        //temporary variables to validate move
         int X = this.current.getX();
         int Y = this.current.getY();
 
+        //setting new coordinates accordingly
         switch (direction) {
             case UP:
                 Y -= 1; //y-coordinate moves up by 1
@@ -49,41 +57,46 @@ public class Player {
                 return false;
         }
 
+        //validating move - checking if legal
         if(!setPosition(new Position(X,Y))){
             System.out.println("Illegal move.");
             return false;
         }
 
-        Tile tile = map.getTile(X, Y);
-        tile.uncoverTile();
+        //uncovering discovered tile
+        map.uncoverTile(X, Y);
 
-        switch(tile.getType()){
+        //setting status according to discovered tile type
+        switch(map.getTileType(X,Y)){
             case GRASS:
-                status = PlayerStatus.MOVED;
+                //if a player discovers a grass tile they are safe
+                status = PlayerStatus.SAFE;
                 break;
 
             case WATER:
+                //if player discovers a water tile they die and return to initial position
                 status = PlayerStatus.DEAD;
                 this.current = this.initial;
                 break;
 
             case TREASURE:
+                //if player discovers a treasure tile they win the game
                 status = PlayerStatus.WINS;
                 break;
 
             default:
                 throw new IndexOutOfBoundsException();
         }
-
         return true;
     }
 
+    //checking if new coordinates are in map boundary
     private boolean setPosition(Position p){
-        //checking if new coordinates are in map boundary
         int x = p.getX();
         int y = p.getY();
 
         if(x > 0 && x < map.getMapSize() && y > 0 && y < map.getMapSize()){
+            //if legal move, set new position
             this.current.setX(x);
             this.current.setY(y);
             return true;
@@ -91,6 +104,7 @@ public class Player {
         return false;
     }
 
+    //getter for player's status
     public PlayerStatus getStatus(){
         return status;
     }
