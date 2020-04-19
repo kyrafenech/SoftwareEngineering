@@ -5,6 +5,7 @@ public class Player {
     private Position current;
     private Position initial;
     private Map map;
+    private PlayerStatus status;
 
     public Player(Map map) {
         this.map = map;
@@ -47,10 +48,33 @@ public class Player {
                 System.out.println("Please press U, D, L or R to move.");
                 return false;
         }
+
         if(!setPosition(new Position(X,Y))){
             System.out.println("Illegal move.");
             return false;
         }
+
+        Tile tile = map.getTile(X, Y);
+        tile.uncoverTile();
+
+        switch(tile.getType()){
+            case GRASS:
+                status = PlayerStatus.MOVED;
+                break;
+
+            case WATER:
+                status = PlayerStatus.DEAD;
+                this.current = this.initial;
+                break;
+
+            case TREASURE:
+                status = PlayerStatus.WINS;
+                break;
+
+            default:
+                throw new IndexOutOfBoundsException();
+        }
+
         return true;
     }
 
@@ -67,4 +91,7 @@ public class Player {
         return false;
     }
 
+    public PlayerStatus getStatus(){
+        return status;
+    }
 }

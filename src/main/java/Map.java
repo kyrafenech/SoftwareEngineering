@@ -99,4 +99,9 @@ public class Map {
     public TileType getTileType(int x, int y){
         return grid[x][y].getType();
     }
+
+    //returns grid
+    public Tile getTile(int x, int y){
+        return grid[x][y];
+    }
 }
