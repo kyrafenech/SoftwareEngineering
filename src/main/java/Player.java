@@ -108,6 +108,11 @@ public class Player {
         return status;
     }
 
+    //getter for current position
+    public Position getCurrent(){
+        return this.current;
+    }
+
     //getter for player's map
     public Map getMap(){
         return this.map;

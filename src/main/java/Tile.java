@@ -7,7 +7,7 @@ public class Tile {
     public Tile(TileType type){
         this.type = type;
         this.uncovered = false;
-        this.html = "<td>" + this.type.toString() + "</td>";
+        this.html = "<td bgcolour=" + this.type.getHexCode() + ">";
     }
 
     //getter for type
