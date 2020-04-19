@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.List;
 
 public class Game {
 
@@ -48,8 +49,16 @@ public class Game {
         boolean inputAccepted;
         Scanner scanner = new Scanner(System.in);
 
-        //variables for map size and number of players
+        //variables for user input for map size and number of players
         int size = 0, playerCount = 0;
+        //to control main game loop
+        boolean isGameWon = false;
+        //variable for for-loops
+        int i;
+        //to accept player movement input
+        Direction move;
+        //array of winners
+        List<Integer> winners = new List;
 
         //validating number of players
         do {
@@ -81,8 +90,43 @@ public class Game {
             }
         }while(!inputAccepted);
 
+        //initialising the map
         game.map = new Map(size);
 
+        //creating the players
+        for(i=0; i < playerCount; i++){
+            game.players[i] = new Player(game.map);
+        }
 
+        do{
+            //loop for player movement
+            for(i=0; i < playerCount; i++){
+                //move validation
+                do {
+                    System.out.println("Enter UP, DOWN, LEFT, RIGHT to move");
+                    move = Direction.valueOf(scanner.nextLine());
+                }while(!game.players[i].move(move));
+
+                //if treasure tile is found by a player, game ends
+                if(game.players[i].getStatus() == PlayerStatus.WINS){
+                    if (!isGameWon) isGameWon = true;
+                    winners.add(i);
+                }
+            }
+        }while(!isGameWon);
+
+        //building list of winners
+        StringBuilder listOfWinners = new StringBuilder("Player " + winners.get(i));
+
+        for(i=1; i < winners.size(); i++){
+            if(i+1 == winners.size()){
+                listOfWinners.append(" and Player ").append(winners.get(i));
+            }
+            else{
+                listOfWinners.append(", Player ").append(winners.get(i));
+            }
+        }
+
+        System.out.println("Congratulations " + listOfWinners + ", you win the game!");
     }
 }

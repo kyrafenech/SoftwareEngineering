@@ -53,7 +53,6 @@ public class Player {
                 break;
             default:
                 //in the case of an invalid token the player does not move
-                System.out.println("Please press U, D, L or R to move.");
                 return false;
         }
 
