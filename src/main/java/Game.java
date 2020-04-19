@@ -18,7 +18,7 @@ public class Game {
         int maxPlayers = 8;
 
         //validating given number of players [2 < n < 8]
-        if (playerCount <= minPlayers || playerCount >= maxPlayers) {
+        if (playerCount < minPlayers || playerCount > maxPlayers) {
             System.out.println("Only between 2 and 8 players are accepted.");
             return false;
         }

@@ -10,13 +10,13 @@ public class Player {
     //class constructor
     public Player(Map map) {
         this.map = map;
-        setInitial();
+        this.initial = setInitial();
         this.current = this.initial; //this will start off as initial
         this.status = PlayerStatus.SAFE;
     }
 
     //setting random initial position
-    private void setInitial(){
+    public Position setInitial(){
         Random rand = new Random();
         int x, y;
 
@@ -28,8 +28,8 @@ public class Player {
 
         }while(map.getTile(x, y).getType() != TileType.GRASS);
 
-        //if valid, set initial position
-        this.initial = new Position(x, y);
+        //return once valid
+        return new Position(x, y);
     }
 
     public boolean move(Direction direction) {
