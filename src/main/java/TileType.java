@@ -4,16 +4,19 @@ import java.util.List;
 import java.util.Random;
 
 public enum TileType {
-        GRASS,
-        WATER,
-        TREASURE;
+        GRASS("#67E240"),
+        WATER("#2FA6F1"),
+        TREASURE("#FFFB40");
 
-        private static final List<TileType> VALUES =
-                Collections.unmodifiableList(Arrays.asList(values()));
-        private static final int SIZE = VALUES.size();
-        private static final Random RANDOM = new Random();
+        private String hexCode;
 
-        public static TileType randomTileType() {
-                return VALUES.get(RANDOM.nextInt(SIZE));
+        TileType(String fffb40) {
+                this.hexCode = fffb40;
         }
+
+        //returns the corresponding hexadecimal colour number
+        public String getHexCode(){
+                return this.hexCode;
+        }
+
 }
