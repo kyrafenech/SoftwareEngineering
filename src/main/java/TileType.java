@@ -1,7 +1,7 @@
 public enum TileType {
-        GRASS("67E240"),
+        GRASS("#67E240"),
         WATER("#2FA6F1"),
-        TREASURE("FFFB40");
+        TREASURE("#FFFB40");
 
         private String hexCode;
 
@@ -9,6 +9,7 @@ public enum TileType {
                 this.hexCode = fffb40;
         }
 
+        //returns the corresponding hexadecimal colour number
         public String getHexCode(){
                 return this.hexCode;
         }
