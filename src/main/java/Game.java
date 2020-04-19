@@ -1,5 +1,5 @@
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.List;
 
 public class Game {
 
@@ -58,7 +58,7 @@ public class Game {
         //to accept player movement input
         Direction move;
         //array of winners
-        List<Integer> winners = new List;
+        ArrayList<Integer> winners = new ArrayList<>();
 
         //validating number of players
         do {
