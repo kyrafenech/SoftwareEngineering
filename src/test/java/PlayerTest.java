@@ -8,7 +8,7 @@ public class PlayerTest {
 
     Player player;
     Tile[][] grid;
-Map map;
+    Map map;
 
     @Before
     public void setUp() {
