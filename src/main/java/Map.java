@@ -5,7 +5,7 @@ public class Map {
     private int size;
     private Tile[][] grid;
 
-    //public constructor
+    //class constructor
     public Map(int size){
         this.size = size;
         this.grid = new Tile[size][size];
@@ -31,6 +31,8 @@ public class Map {
         setWater();
    }
 
+    //setting a number of tile types as grass
+    //includes path validation
     private void setGrass(int tX, int tY, int num){
         //variable to store position of tiles to be set as grass
         int x = tX;
@@ -95,8 +97,13 @@ public class Map {
         return this.size;
     }
 
-    //returns the type of tile at the given index
+    //returns tile type
     public TileType getTileType(int x, int y){
         return grid[x][y].getType();
+    }
+
+    //uncovers discovered tiles
+    public void uncoverTile(int x, int y){
+        grid[x][y].setUncovered();
     }
 }

@@ -1,19 +1,19 @@
 public class Tile {
 
     private TileType type;
-    private boolean covered;
+    private boolean uncovered;
 
     public Tile(TileType type){
         this.type = type;
-        this.covered = true;
+        this.uncovered = false;
     }
 
     public TileType getType() {
         return this.type;
     }
 
-    public void uncoverTile(){
-        this.covered = false;
+    public void setUncovered(){
+        this.uncovered = true;
     }
 
 }
